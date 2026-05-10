@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using TMPro;
 
 public class PlayerController : MonoBehaviour
 {
@@ -7,12 +8,13 @@ public class PlayerController : MonoBehaviour
     private float currentHP;
     private PlayerInput playerInput;
     private Vector2 moveInput;
-
+    public TextMeshProUGUI hpText;
     void Start()
     {
         playerInput = GetComponent<PlayerInput>();
         
         currentHP = playerData.maxHP;
+        UpdateHp();
     }
     
     
@@ -38,11 +40,19 @@ public class PlayerController : MonoBehaviour
     void TakeDamage(float dmg)
     {
         currentHP -= dmg;
+
+        UpdateHp();
+
         Debug.Log("Player HP: " + currentHP);
 
         if (currentHP <= 0)
         {
             GameManager.Instance.GameOver();
         }
+    }
+
+    void UpdateHp()
+    {
+        hpText.text = "HP: " + currentHP.ToString("0");
     }
 }
