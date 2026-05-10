@@ -4,6 +4,7 @@ using TMPro;
 
 public class PlayerController : MonoBehaviour
 {
+    // Mengubah agar bisa diatur dari Inspector
     public PlayerData playerData;
     private float currentHP;
     private PlayerInput playerInput;
